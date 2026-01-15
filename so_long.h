@@ -6,7 +6,7 @@
 /*   By: mpedraza <mpedraza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 16:01:43 by mpedraza          #+#    #+#             */
-/*   Updated: 2026/01/14 19:26:24 by mpedraza         ###   ########.fr       */
+/*   Updated: 2026/01/15 16:33:34 by mpedraza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,20 +17,27 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-#define TILE 32
-#define MAP_W 8
-#define MAP_H 8
+#define TILE 64
 
-typedef struct s_txtrs
+typedef struct s_textures
 {
-	void	*wall;
-	void	*floor;
-	void	*player;
-	void	*exit;
-	void	*item;
-	int		h;
-	int		w;
-}	t_txtrs;
+	void	*w;
+	void	*f;
+	void	*p;
+	void	*e;
+	void	*c;
+	int		t_h;
+	int		t_w;
+}	t_txtr;
+
+typedef struct s_player
+{
+	int		x;
+	int		y;
+	int		items;
+	int		moves;
+}	t_plyr;
+
 
 typedef struct s_game
 {
@@ -41,10 +48,8 @@ typedef struct s_game
 	int		map_w;
 	int		map_h;
 
-	int		player_x;
-	int		player_y;
-	int		items;
-	int		moves;
+	t_plyr	p;
+	t_txtr	tx;
 }	t_game;
 
 #endif

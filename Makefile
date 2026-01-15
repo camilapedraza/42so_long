@@ -6,7 +6,7 @@
 #    By: mpedraza <mpedraza@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/07 14:16:38 by mpedraza          #+#    #+#              #
-#    Updated: 2026/01/14 20:03:56 by mpedraza         ###   ########.fr        #
+#    Updated: 2026/01/15 16:15:01 by mpedraza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,9 +17,8 @@ CFLAGS		= 	-Wall -Wextra -Werror
 SRCS		=	so_long.c
 OBJS		=	${SRCS:%.c=%.o}
 
-ASSETS		=	asset_floor asset_onigiri asset_onigiri_salmon asset_salmon \
-				asset_wall
-XPMS		= 	${ASSETS:%=%.xpm}
+FILES		=	c1 f p0 p1 w
+ASSETS		= 	${FILES:%=img/%.xpm}
 
 
 # FOR AGRESSIVE OPTIMIZATION WHEN DONE DEBUGGING
@@ -32,7 +31,7 @@ XPMS		= 	${ASSETS:%=%.xpm}
 
 all: ${NAME}
 
-${NAME}: ${OBJS} ${XPMS}
+${NAME}: ${OBJS} ${ASSETS} 
 	${CC} ${OBJS} -Lmlx -lmlx -Imlx -lXext -lX11 -lm -lz -o $(NAME)
 
 clean:

@@ -6,7 +6,7 @@
 /*   By: mpedraza <mpedraza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 16:01:43 by mpedraza          #+#    #+#             */
-/*   Updated: 2026/01/15 16:33:34 by mpedraza         ###   ########.fr       */
+/*   Updated: 2026/01/15 19:59:07 by mpedraza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ typedef struct s_textures
 	void	*p;
 	void	*e;
 	void	*c;
+	void	*a;
 	int		t_h;
 	int		t_w;
 }	t_txtr;
@@ -47,9 +48,23 @@ typedef struct s_game
 	char	**map;
 	int		map_w;
 	int		map_h;
+	int		items;
 
 	t_plyr	p;
 	t_txtr	tx;
 }	t_game;
+
+/*  LOADING LIBS AND ASSETS  */
+void	load_mlx_window(t_game *g);
+void	load_assets(t_game *g);
+
+/*  INITIALIZING GRAPHICS AND OBJECTS */
+void	init_player(t_game *g, int x, int y);
+void	init_tile(t_game *g, char tile, int x, int y);
+void	init_map(t_game *g);
+
+	/*  RENDERING GRAPHICS  */
+void	render_tile(t_game *g, char tile, int x, int y);
+void	render_map(t_game *g);
 
 #endif

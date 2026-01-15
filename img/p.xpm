@@ -1,5 +1,5 @@
 /* XPM */
-static char *p0[] = {
+static char *p[] = {
 /* columns rows colors chars-per-pixel */
 "64 64 15 1 ",
 "  c #2A251A",

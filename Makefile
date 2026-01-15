@@ -6,7 +6,7 @@
 #    By: mpedraza <mpedraza@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/07 14:16:38 by mpedraza          #+#    #+#              #
-#    Updated: 2026/01/15 20:01:05 by mpedraza         ###   ########.fr        #
+#    Updated: 2026/01/15 20:35:39 by mpedraza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ FILES		=	so_long load init render
 SRCS		=	${FILES:%=%.c}
 OBJS		=	${SRCS:%.c=%.o}
 
-IMAGES		=	a c f p w
+IMAGES		=	a c f p pa pc pca w
 ASSETS		= 	${IMAGES:%=img/%.xpm}
 
 # TODO NEED TO INCLUDE RULE TO CLONE MLX PROJECT, CONFIGURE BEFORE ANYTHING ELSE!

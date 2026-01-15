@@ -6,7 +6,7 @@
 /*   By: mpedraza <mpedraza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 14:21:49 by mpedraza          #+#    #+#             */
-/*   Updated: 2026/01/15 20:10:11 by mpedraza         ###   ########.fr       */
+/*   Updated: 2026/01/15 20:32:40 by mpedraza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,9 @@ int	main(int ac, char **av)
 	// TODO validate map
 	// TODO determine map with and height so new_window can use it
 	init_game(&g);
-	printf("Player at (%d, %d)\n", g.p.x, g.p.y);
 	//mlx_key_hook(g.win, );
-		// set hooks here
-		// how to update player look based on picked up collectibles
+	// set hooks here
+	// how to update player look based on picked up collectibles
 	mlx_loop(g.mlx);
 	// anything after this will never run
 	

@@ -6,7 +6,7 @@
 /*   By: mpedraza <mpedraza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 14:21:49 by mpedraza          #+#    #+#             */
-/*   Updated: 2026/01/16 16:38:58 by mpedraza         ###   ########.fr       */
+/*   Updated: 2026/01/16 20:02:23 by mpedraza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,85 +21,103 @@ void	exit_game(t_game *g)
 	exit(0);
 }
 
-void	move(t_game *g, int move_x, int move_y)
-{
-	int	dest_x;
-	int dest_y;
-
-	//(void)g;
-	//(void)move_x;
-	//(void)move_y;
-	//write(1, "hello\n", 6);
-
-	dest_x = g->p.x + move_x;
-	dest_y = g->p.y + move_y;
-
-	if (g->map[dest_y][dest_x] == '1')
-		return ;
-	// TODO add logic if == E but P has not picked up all C
-	// TODO add logic if == C
-	//g->map[g->p.y][g->p.x] = '0';
-	//g->p.x = dest_x;
-	//g->p.y = dest_y;
-	//g->map[dest_y][dest_x] = 'P';
-	//g->p.moves += 1;
-	
-	render_map(g);
-}
-
-int	handle_keypress(int keycode, t_game *g)
-{
-	if (keycode == KEY_ESC)
-		exit_game(g);
-	else if (keycode == KEY_UP)
-		move(g, 0, -1);
-	else if (keycode == KEY_DOWN)
-		move(g, 0, 1);
-	else if (keycode == KEY_LEFT)
-		move(g, -1, 0);
-	else if (keycode == KEY_RIGHT)
-		move(g, 1, 0);
-	return (0);
-}
-
 void	init_game(t_game *g)
-{
-	static char *map[] = {
-		"11111111",
-		"10000001",
-		"10001111",
-		"10P010C1",
-		"10001001",
-		"10000001",
-		"100A0001",
-		"11111111",
-		NULL};
-	
-	g->map = map;
+{	
 	load_mlx_window(g);
 	load_assets(g);
 	init_map(g);
 	mlx_key_hook(g->win, handle_keypress, g);
 }
 
+int count_lines(char *filepath)
+{
+	int		fd;
+	int		count;
+	char	*line;
+
+	fd = open(filepath, O_RDONLY);
+	if (fd < 0)
+		return (-1);
+	count = 0;
+	while (1)
+	{
+		line = get_next_line(fd);
+		if (!line)
+			break ;
+		count++;
+		free(line);
+	}
+	close(fd);
+	return (count);
+}
+
+void	populate_map(t_game *g, char *filepath)
+{
+	int		fd;
+	int		y;
+	char	*line;
+	int		len;
+	
+	fd = open(filepath, O_RDONLY);
+	g->map = malloc(sizeof(char *) * (g->map_h + 1));
+	if (!g->map)
+		exit_game(g);
+	y = 0;
+	while (1)
+	{
+		line = get_next_line(fd);
+		if (!line)
+			break ;
+		len = ft_strlen(line);
+		if (len > 0 && line[len - 1] == '\n')
+			line[len - 1] = '\0';
+		g->map[y++] = line;
+	}
+	if (y != g->map_h)
+		exit_game(g); // free allocated lines!
+	g->map[y] = NULL;
+	close(fd);
+}
+
+void	validate_map(t_game *g)
+{
+	(void)g;
+	return ;
+	// map should be AT LEAST 3 lines for it to be valid
+	// all lines should be the same len for it to be valid
+	// First and last row need to be only 1
+	// First and last column need to be only 1
+	// Count P == 1, C 	>= 1, E == 1
+	// No characters outside of 10PCEA
+}
+
+void	parse_template(t_game *g, char *filepath)
+{
+	g->map_h = count_lines(filepath);
+	if (g->map_h < 0)
+	{
+		write(1, "Error loading map file\n", 24);
+		exit_game(g);
+	}
+	// should we check for a max number of lines?
+	populate_map(g, filepath);
+	g->map_w = ft_strlen(g->map[0]);
+	validate_map(g);
+}
+
 int	main(int ac, char **av)
 {
-	(void)av;
-	(void)ac;
-	
-	//if (ac != 2)
-		//exit(EXIT_FAILURE);
-	// check parameter is a .ber file and open it
+	t_game g;
 
-	t_game	g;
-	
+	if (ac != 2)
+		exit(EXIT_FAILURE);
+	parse_template(&g, av[1]);
+	// add usage message?
 	// TODO validate args
 	// TODO validate map
 	// TODO determine map with and height so new_window can use it
 	init_game(&g);
-	// set hooks here
 	// how to update player look based on picked up collectibles
 	mlx_loop(g.mlx);
 	// anything after this will never run
-	
 }

@@ -6,7 +6,7 @@
 /*   By: mpedraza <mpedraza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 16:01:43 by mpedraza          #+#    #+#             */
-/*   Updated: 2026/01/15 19:59:07 by mpedraza         ###   ########.fr       */
+/*   Updated: 2026/01/16 16:03:46 by mpedraza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,13 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-#define TILE 64
+# define TILE 64
+
+# define KEY_ESC	65307
+# define KEY_LEFT	65361
+# define KEY_UP		65362
+# define KEY_RIGHT	65363
+# define KEY_DOWN	65364
 
 typedef struct s_textures
 {

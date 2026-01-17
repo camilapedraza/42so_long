@@ -6,7 +6,7 @@
 /*   By: mpedraza <mpedraza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 16:01:43 by mpedraza          #+#    #+#             */
-/*   Updated: 2026/01/16 18:01:55 by mpedraza         ###   ########.fr       */
+/*   Updated: 2026/01/17 19:41:47 by mpedraza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,15 @@
 # define KEY_RIGHT	65363
 # define KEY_DOWN	65364
 
+# define MAP_MARKERS "01PCEA"
+
+enum	e_exit
+{
+	CLOSED,
+	OPEN,
+	REACHED
+};
+
 typedef struct s_textures
 {
 	void	*w;
@@ -42,12 +51,27 @@ typedef struct s_textures
 
 typedef struct s_player
 {
-	int		x;
-	int		y;
-	int		items;
-	int		moves;
+	int	x;
+	int	y;
+	int	items;
+	int	a;
+	int	c;
+	int	moves;
 }	t_plyr;
 
+typedef struct s_exit
+{
+	int			x;
+	int			y;
+	enum e_exit status;
+} t_exit;
+
+typedef struct s_items
+{
+	int total;
+	int c;
+	int a;
+} t_itms;
 
 typedef struct s_game
 {
@@ -57,9 +81,9 @@ typedef struct s_game
 	char	**map;
 	int		map_w;
 	int		map_h;
-	int		items;
-
+	
 	t_plyr	p;
+	t_itms	i;
 	t_txtr	tx;
 }	t_game;
 

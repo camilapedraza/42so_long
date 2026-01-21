@@ -6,7 +6,7 @@
 /*   By: mpedraza <mpedraza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 19:43:13 by mpedraza          #+#    #+#             */
-/*   Updated: 2026/01/16 19:40:34 by mpedraza         ###   ########.fr       */
+/*   Updated: 2026/01/21 16:16:56 by mpedraza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ void	init_tile(t_game *g, char tile, int x, int y)
 	}
 	if (tile == 'E')
 		mlx_put_image_to_window(g->mlx, g->win, g->tx.e, x * TILE, y * TILE);
-
 }
 
 void	init_map(t_game *g)

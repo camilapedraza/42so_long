@@ -6,7 +6,7 @@
 /*   By: mpedraza <mpedraza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 18:41:30 by mpedraza          #+#    #+#             */
-/*   Updated: 2026/01/16 16:05:38 by mpedraza         ###   ########.fr       */
+/*   Updated: 2026/01/21 16:19:35 by mpedraza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ void	render_tile(t_game *g, char tile, int x, int y)
 		mlx_put_image_to_window(g->mlx, g->win, g->tx.c, x * TILE, y * TILE);
 	if (tile == 'A')
 		mlx_put_image_to_window(g->mlx, g->win, g->tx.a, x * TILE, y * TILE);
-	// TODO draw exit
+	if (tile == 'E')
+		mlx_put_image_to_window(g->mlx, g->win, g->tx.e, x * TILE, y * TILE);
 	// TODO how to randomize collectibles
 }
 

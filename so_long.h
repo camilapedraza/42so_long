@@ -6,7 +6,7 @@
 /*   By: mpedraza <mpedraza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 16:01:43 by mpedraza          #+#    #+#             */
-/*   Updated: 2026/01/17 19:41:47 by mpedraza         ###   ########.fr       */
+/*   Updated: 2026/01/21 16:18:09 by mpedraza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,17 +37,12 @@ enum	e_exit
 	REACHED
 };
 
-typedef struct s_textures
+typedef struct s_obj_count
 {
-	void	*w;
-	void	*f;
-	void	*p;
-	void	*e;
-	void	*c;
-	void	*a;
-	int		t_h;
-	int		t_w;
-}	t_txtr;
+	int	p;
+	int	c;
+	int	e;
+}	t_objs;
 
 typedef struct s_player
 {
@@ -59,6 +54,13 @@ typedef struct s_player
 	int	moves;
 }	t_plyr;
 
+typedef struct s_items
+{
+	int total;
+	int c;
+	int a;
+} t_itms;
+
 typedef struct s_exit
 {
 	int			x;
@@ -66,12 +68,17 @@ typedef struct s_exit
 	enum e_exit status;
 } t_exit;
 
-typedef struct s_items
+typedef struct s_textures
 {
-	int total;
-	int c;
-	int a;
-} t_itms;
+	void *w;
+	void *f;
+	void *p;
+	void *e;
+	void *c;
+	void *a;
+	int t_h;
+	int t_w;
+} t_txtr;
 
 typedef struct s_game
 {
@@ -82,8 +89,10 @@ typedef struct s_game
 	int		map_w;
 	int		map_h;
 	
+	t_objs	o;
 	t_plyr	p;
 	t_itms	i;
+	t_exit	e;
 	t_txtr	tx;
 }	t_game;
 

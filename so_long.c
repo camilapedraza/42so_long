@@ -6,7 +6,7 @@
 /*   By: mpedraza <mpedraza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 14:21:49 by mpedraza          #+#    #+#             */
-/*   Updated: 2026/01/17 20:21:37 by mpedraza         ###   ########.fr       */
+/*   Updated: 2026/01/21 16:47:18 by mpedraza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	populate_map(t_game *g, char *filepath)
 		g->map[y++] = line;
 	}
 	if (y != g->map_h)
-		exit_game(g); // free allocated lines!
+		exit_game(g); // TODO free allocated lines!
 	g->map[y] = NULL;
 	close(fd);
 }
@@ -93,25 +93,47 @@ int 	is_rectangle(t_game *g)
 	}
 	return (1);
 }
+
+void	set_objets(char obj, t_game *g)
+{
+	if (obj == 'C')
+		g->o.c++;
+	if (obj == 'E')
+		g->o.e++;
+	if (obj == 'P')
+		g->o.p++;
+}
+
+void	init_objects(t_game *g)
+{
+	g->o.p = 0;
+	g->o.c = 0;
+	g->o.e = 0;
+}
 int		has_valid_objects(t_game *g)
 {
 	int		y;
 	int		x;
-	//t_objs	count;
 
+	init_objects(g);
 	y = 0;
 	while (g->map[y])
 	{
 		x = 0;
-		while (g->map[x])
+		while (g->map[y][x])
 		{
 			if (!ft_strchr(MAP_MARKERS, g->map[y][x]))
 				return (0);
+			set_objets(g->map[y][x], g);
+			x++;
 		}
-		// check P, E and C (exist and in right number)
+		y++;
 	}
+	if (g->o.p != 1 || g->o.e != 1 || g->o.c < 1)
+		return (0);
 	return (1);
 }
+
 int		has_valid_border(t_game *g)
 {
 	int	y;
@@ -121,14 +143,14 @@ int		has_valid_border(t_game *g)
 	while (g->map[y])
 	{
 		x = 0;
-		while (g->map[x])
+		while (g->map[y][x])
 		{
-			if (x == 0 || x == g->map_h)
+			if (y == 0 || y == g->map_h)
 			{
 				if (g->map[y][x] != '1')
 					return (0);
 			}
-			else if (y == 0 || y == g->map_w)
+			if (x == 0 || x == g->map_w - 1)
 			{
 				if (g->map[y][x] != '1')
 					return (0);
@@ -142,32 +164,27 @@ int		has_valid_border(t_game *g)
 
 void	validate_map(t_game *g)
 {
-
-	// map should be AT LEAST 3 lines for it to be valid
 	if (g->map_h < 3)
 	{
-		write(1, "Map too small\n", 15);
+		write(1, "Error: Map is too small\n", 25);
 		exit_game(g);
 	}
-		// all lines should be the same len for it to be valid
 	if (!is_rectangle(g))
 	{
-		write(1, "Map not a rectangle\n", 15);
+		write(1, "Error: Map is not a rectangle\n", 31);
 		exit_game(g);
 	}
 	if (!has_valid_objects(g))
 	{
-
+		write(1, "Error: Map contains invalid characters\n", 40);
+		exit_game(g);
 	}
 	if (!has_valid_border(g))
 	{
-		write(1, "Map is has invalid wall border\n", 15);
+		write(1, "Error: Map has break in external wall\n", 39);
 		exit_game(g);
 	}
-
-
-	
-	// No characters outside of 10PCEA
+	// TODO validate all collectibles and exit are accessible
 }
 
 void	parse_template(t_game *g, char *filepath)
@@ -178,10 +195,10 @@ void	parse_template(t_game *g, char *filepath)
 		write(1, "Error loading map file\n", 24);
 		exit_game(g);
 	}
-	// should we check for a max number of lines?
+	// TODO should we check for a max number of lines?
 	populate_map(g, filepath);
 	g->map_w = ft_strlen(g->map[0]);
-	//validate_map(g);
+	validate_map(g);
 }
 
 int	main(int ac, char **av)

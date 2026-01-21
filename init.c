@@ -6,19 +6,12 @@
 /*   By: mpedraza <mpedraza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 19:43:13 by mpedraza          #+#    #+#             */
-/*   Updated: 2026/01/21 16:16:56 by mpedraza         ###   ########.fr       */
+/*   Updated: 2026/01/21 18:27:10 by mpedraza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	init_player(t_game *g, int x, int y)
-{
-	g->p.x = x;
-	g->p.y = y;
-	g->p.items = 0;
-	g->p.moves = 0;
-}
 
 void	init_tile(t_game *g, char tile, int x, int y)
 {
@@ -28,7 +21,6 @@ void	init_tile(t_game *g, char tile, int x, int y)
 		mlx_put_image_to_window(g->mlx, g->win, g->tx.f, x * TILE, y * TILE);
 	if (tile == 'P')
 	{
-		init_player(g, x, y);
 		mlx_put_image_to_window(g->mlx, g->win, g->tx.p, x * TILE, y * TILE);
 	}
 	if (tile == 'C')

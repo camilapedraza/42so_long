@@ -6,7 +6,7 @@
 /*   By: mpedraza <mpedraza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 16:01:43 by mpedraza          #+#    #+#             */
-/*   Updated: 2026/01/21 16:18:09 by mpedraza         ###   ########.fr       */
+/*   Updated: 2026/01/21 18:54:49 by mpedraza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,8 @@ typedef struct s_game
 	int		map_w;
 	int		map_h;
 	
+	char	**test_map;
+	
 	t_objs	o;
 	t_plyr	p;
 	t_itms	i;
@@ -101,7 +103,16 @@ void	load_mlx_window(t_game *g);
 void	load_assets(t_game *g);
 void	exit_game(t_game *g);
 
-/*  INITIALIZING GRAPHICS AND OBJECTS */
+/*  PARSING & VALIDATING MAP  */
+void	load_map(t_game *g, char *filepath);
+void	validate_map(t_game *g);
+void	parse_template(t_game *g, char *filepath);
+int		is_rectangle(t_game *g);
+int		has_valid_objects(t_game *g);
+int		has_valid_border(t_game *g);
+int		is_solvable(t_game *g);
+
+	/*  INITIALIZING GRAPHICS AND OBJECTS */
 void	init_player(t_game *g, int x, int y);
 void	init_tile(t_game *g, char tile, int x, int y);
 void	init_map(t_game *g);
@@ -117,10 +128,14 @@ int		handle_keypress(int keycode, t_game *g);
 /* 	HELPERS  */
 char	*get_next_line(int fd);
 
-/*  UTILITIES  */
+/*  UTILITIES: STRINGS  */
 size_t	ft_strlen(const char *s);
 char	*ft_strchr(const char *s, int c);
 char	*ft_strdup(const char *s);
 char	*ft_strjoin(char const *s1, char const *s2);
+
+/*  UTILITIES: FLOOD FILL  */
+int		has_valid_path(char **map);
+void	flood_fill(char **test_map, int x, int y);
 
 #endif

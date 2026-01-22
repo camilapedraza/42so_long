@@ -6,7 +6,7 @@
 /*   By: mpedraza <mpedraza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 16:51:00 by mpedraza          #+#    #+#             */
-/*   Updated: 2026/01/22 18:33:34 by mpedraza         ###   ########.fr       */
+/*   Updated: 2026/01/22 19:12:57 by mpedraza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	load_map(t_game *g, char *filepath)
 		g->map[y++] = line;
 	}
 	if (y != g->map_h)
-		exit_game(g); // TODO free allocated lines!
+		exit_game(g);
 	g->map[y] = NULL;
 	close(fd);
 }

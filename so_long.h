@@ -6,7 +6,7 @@
 /*   By: mpedraza <mpedraza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 16:01:43 by mpedraza          #+#    #+#             */
-/*   Updated: 2026/01/22 18:48:09 by mpedraza         ###   ########.fr       */
+/*   Updated: 2026/01/22 19:58:33 by mpedraza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ enum	e_exit
 {
 	CLOSED,
 	OPEN,
-	REACHED
 };
 
 enum e_plyr
@@ -129,6 +128,10 @@ void	init_game_state(t_game *g);
 /*  RENDERING GRAPHICS  */
 void	render_tile(t_game *g, char tile, int x, int y);
 void	render_map(t_game *g);
+
+/*	PRINTING MESSAGES  */
+void	print_instructions(void);
+void	print_status(t_game *g);
 
 /*  HANDLING INPUT  */
 int		handle_keypress(int keycode, t_game *g);

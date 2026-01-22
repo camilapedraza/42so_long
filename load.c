@@ -6,7 +6,7 @@
 /*   By: mpedraza <mpedraza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 18:49:05 by mpedraza          #+#    #+#             */
-/*   Updated: 2026/01/22 18:46:21 by mpedraza         ###   ########.fr       */
+/*   Updated: 2026/01/22 19:08:39 by mpedraza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,14 @@ void	load_mlx_window(t_game *g)
 	if (!g->mlx)
 	{
 		write(2, "Failed to init MLX\n", 20);
-		exit(EXIT_FAILURE);
+		exit_game(g);
 	}
 	// TODO should I get display size with mlx_get_screen_size??
 	g->win = mlx_new_window(g->mlx, 64 * g->map_w, 64 * g->map_h, "So Long");
 	if (!g->win)
 	{
 		write(2, "Failed to create MLX window\n", 29);
-		// TODO destroy MLX and point to NULL before exiting
-		exit(EXIT_FAILURE);
+		exit_game(g);
 	}
 }
 
@@ -55,7 +54,6 @@ void	load_assets(t_game *g)
 	if (!g->tx.w || !g->tx.f || !g->tx.p || !g->tx.pa || !g->tx.pca || !g->tx.pcab || !g->tx.e || !g->tx.eo || !g->tx.c || !g->tx.a)
 	{
 		write(2, "Error! Failed to load XPM files\n", 33);
-		// TODO destroy malloced assets, window, MLX, and point to NULL before exiting
-		exit(EXIT_FAILURE);
+		exit_game(g);
 	}
 }

@@ -6,7 +6,7 @@
 #    By: mpedraza <mpedraza@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/07 14:16:38 by mpedraza          #+#    #+#              #
-#    Updated: 2026/01/22 16:00:31 by mpedraza         ###   ########.fr        #
+#    Updated: 2026/01/22 19:37:34 by mpedraza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,8 @@ NAME		=	so_long
 CC			=	cc
 CFLAGS		= 	-Wall -Wextra -Werror
 
-FILES		=	so_long init parse validate load render input helpers_gnl \
+FILES		=	so_long init parse validate load render input print \
+				helper_gnl \
 				utils_flood utils_string
 SRCS		=	${FILES:%=%.c}
 OBJS		=	${SRCS:%.c=%.o}

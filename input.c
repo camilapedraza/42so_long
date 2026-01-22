@@ -6,7 +6,7 @@
 /*   By: mpedraza <mpedraza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 17:32:17 by mpedraza          #+#    #+#             */
-/*   Updated: 2026/01/22 18:49:55 by mpedraza         ###   ########.fr       */
+/*   Updated: 2026/01/22 19:37:55 by mpedraza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ static void	execute_move(t_game *g, int d_x, int d_y)
 	g->p.y = d_y;
 	g->map[d_y][d_x] = 'P';
 	g->p.moves += 1;
+	print_status(g);
 }
 
 static void parse_move(t_game *g, int move_x, int move_y)

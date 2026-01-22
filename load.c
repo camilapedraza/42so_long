@@ -6,7 +6,7 @@
 /*   By: mpedraza <mpedraza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 18:49:05 by mpedraza          #+#    #+#             */
-/*   Updated: 2026/01/22 21:43:23 by mpedraza         ###   ########.fr       */
+/*   Updated: 2026/01/22 23:10:29 by mpedraza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,13 @@ void	load_mlx_window(t_game *g)
 	g->mlx = mlx_init();
 	if (!g->mlx)
 	{
-		write(2, "Failed to init MLX\n", 20);
+		write(2, "Error: Failed to init MLX\n", 27);
 		exit_game(g);
 	}
 	g->win = mlx_new_window(g->mlx, 64 * g->map_w, 64 * g->map_h, "So Long");
 	if (!g->win)
 	{
-		write(2, "Failed to create MLX window\n", 29);
+		write(2, "Error: Failed to create MLX window\n", 36);
 		exit_game(g);
 	}
 }

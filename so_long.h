@@ -6,7 +6,7 @@
 /*   By: mpedraza <mpedraza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 16:01:43 by mpedraza          #+#    #+#             */
-/*   Updated: 2026/01/22 21:51:04 by mpedraza         ###   ########.fr       */
+/*   Updated: 2026/01/22 22:34:03 by mpedraza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ typedef struct s_player
 
 typedef struct s_items
 {
-	int	total;
 	int	c;
 	int	a;
 }	t_itms;

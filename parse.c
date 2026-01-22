@@ -6,7 +6,7 @@
 /*   By: mpedraza <mpedraza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 16:51:00 by mpedraza          #+#    #+#             */
-/*   Updated: 2026/01/22 21:43:52 by mpedraza         ###   ########.fr       */
+/*   Updated: 2026/01/22 22:21:27 by mpedraza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	load_map(t_game *g, char *filepath)
 
 void	validate_map(t_game *g)
 {
-	if (g->map_h < 3)
+	if (g->map_h < 3 || g->map_w < 3)
 	{
 		write(2, "Error: Map is too small\n", 25);
 		exit_game(g);
@@ -76,10 +76,7 @@ void	validate_map(t_game *g)
 		exit_game(g);
 	}
 	if (!has_valid_objects(g))
-	{
-		write(2, "Error: Invalid characters or object counts\n", 31);
 		exit_game(g);
-	}
 	if (!has_valid_border(g))
 	{
 		write(2, "Error: Map has break in boundary wall\n", 39);

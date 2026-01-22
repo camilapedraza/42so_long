@@ -6,7 +6,7 @@
 /*   By: mpedraza <mpedraza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 16:55:23 by mpedraza          #+#    #+#             */
-/*   Updated: 2026/01/22 21:48:36 by mpedraza         ###   ########.fr       */
+/*   Updated: 2026/01/22 22:33:45 by mpedraza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ static void	set_objets(char obj, t_game *g, int x, int y)
 			g->i.c++;
 		else
 			g->i.a++;
-		g->i.total++;
 	}
 	if (obj == 'E')
 	{

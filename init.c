@@ -6,7 +6,7 @@
 /*   By: mpedraza <mpedraza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 19:43:13 by mpedraza          #+#    #+#             */
-/*   Updated: 2026/01/22 21:31:49 by mpedraza         ###   ########.fr       */
+/*   Updated: 2026/01/22 22:34:43 by mpedraza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ static void	init_game_objects(t_game *g)
 	g->p.a = 0;
 	g->p.c = 0;
 	g->p.moves = 0;
-	g->i.total = 0;
 	g->i.a = 0;
 	g->i.c = 0;
 	g->e.total = 0;

@@ -6,7 +6,7 @@
 /*   By: mpedraza <mpedraza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 16:55:23 by mpedraza          #+#    #+#             */
-/*   Updated: 2026/01/21 18:56:11 by mpedraza         ###   ########.fr       */
+/*   Updated: 2026/01/22 16:15:11 by mpedraza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,23 @@ int is_rectangle(t_game *g)
 
 static void set_objets(char obj, t_game *g, int x, int y)
 {
-	if (obj == 'C')
-		g->o.c++;
+	if (obj == 'C' || obj == 'A')
+	{
+		if (obj == 'C')
+			g->i.c++;
+		else
+			g->i.a++;
+		g->i.total++;
+	}
 	if (obj == 'E')
-		g->o.e++;
+	{
+		g->e.total++;
+		g->e.x = x;
+		g->e.y = y;
+	}
 	if (obj == 'P')
 	{
-		g->o.p++;
+		g->p.total++;
 		g->p.x = x;
 		g->p.y = y;
 	}
@@ -46,9 +56,6 @@ int has_valid_objects(t_game *g)
 	int y;
 	int x;
 
-	g->o.p = 0;
-	g->o.c = 0;
-	g->o.e = 0;
 	y = 0;
 	while (g->map[y])
 	{
@@ -56,14 +63,20 @@ int has_valid_objects(t_game *g)
 		while (g->map[y][x])
 		{
 			if (!ft_strchr(MAP_MARKERS, g->map[y][x]))
+			{
+				write(2, "Error: Map contains invalid characters\n", 40);
 				return (0);
+			}
 			set_objets(g->map[y][x], g, x, y);
 			x++;
 		}
 		y++;
 	}
-	if (g->o.p != 1 || g->o.e != 1 || g->o.c < 1)
+	if (g->p.total != 1 || g->e.total != 1 || g->i.c < 1)
+	{
+		write(2, "Error: Wrong number of objects in map\n", 39);
 		return (0);
+	}
 	return (1);
 }
 

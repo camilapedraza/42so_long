@@ -6,7 +6,7 @@
 /*   By: mpedraza <mpedraza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 14:21:49 by mpedraza          #+#    #+#             */
-/*   Updated: 2026/01/21 18:49:08 by mpedraza         ###   ########.fr       */
+/*   Updated: 2026/01/22 16:12:05 by mpedraza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	init_game(t_game *g)
 {	
 	load_mlx_window(g);
 	load_assets(g);
-	init_map(g);
+	render_map(g);
 	mlx_key_hook(g->win, handle_keypress, g);
 }
 
@@ -35,6 +35,7 @@ int	main(int ac, char **av)
 
 	if (ac != 2)
 		exit(EXIT_FAILURE);
+	init_game_state(&g);
 	// TODO initialize the game struct so no values will cause read segfaults?
 	parse_template(&g, av[1]);
 	// add usage message?
@@ -45,3 +46,4 @@ int	main(int ac, char **av)
 	// how to update player look based on picked up collectibles
 	mlx_loop(g.mlx);
 }
+// TODO: Check all places with error messages - implement perror where needed

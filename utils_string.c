@@ -6,11 +6,27 @@
 /*   By: mpedraza <mpedraza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 01:30:19 by mpedraza          #+#    #+#             */
-/*   Updated: 2026/01/16 18:00:13 by mpedraza         ###   ########.fr       */
+/*   Updated: 2026/01/22 15:16:29 by mpedraza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+int ft_strncmp(const char *s1, const char *s2, size_t n)
+{
+	size_t i;
+
+	if (n == 0)
+		return (0);
+	i = 0;
+	while (*s1 == *s2 && *s1 && i + 1 < n)
+	{
+		s1++;
+		s2++;
+		i++;
+	}
+	return ((unsigned char)*s1 - (unsigned char)*s2);
+}
 
 size_t	ft_strlen(const char *s)
 {

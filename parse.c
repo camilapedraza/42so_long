@@ -6,7 +6,7 @@
 /*   By: mpedraza <mpedraza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 16:51:00 by mpedraza          #+#    #+#             */
-/*   Updated: 2026/01/21 18:47:24 by mpedraza         ###   ########.fr       */
+/*   Updated: 2026/01/22 16:15:43 by mpedraza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static int	count_lines(char *filepath)
 
 	fd = open(filepath, O_RDONLY);
 	if (fd < 0)
-		return (-1);
+		return (fd);
 	count = 0;
 	while (1)
 	{
@@ -42,7 +42,8 @@ void	load_map(t_game *g, char *filepath)
 	int		len;
 	
 	fd = open(filepath, O_RDONLY);
-	g->map = malloc(sizeof(char *) * (g->map_h + 1));
+	if (fd > 0)
+		g->map = malloc(sizeof(char *) * (g->map_h + 1));
 	if (!g->map)
 		exit_game(g);
 	y = 0;
@@ -65,41 +66,54 @@ void	validate_map(t_game *g)
 {
 	if (g->map_h < 3)
 	{
-		write(1, "Error: Map is too small\n", 25);
+		write(2, "Error: Map is too small\n", 25);
 		exit_game(g);
 	}
 	if (!is_rectangle(g))
 	{
-		write(1, "Error: Map is not a rectangle\n", 31);
+		write(2, "Error: Map is not a rectangle\n", 31);
 		exit_game(g);
 	}
 	if (!has_valid_objects(g))
 	{
-		write(1, "Error: Map contains invalid characters\n", 40);
 		exit_game(g);
 	}
 	if (!has_valid_border(g))
 	{
-		write(1, "Error: Map has break in external wall\n", 39);
+		write(2, "Error: Map has break in boundary wall\n", 39);
 		exit_game(g);
 	}
 	if (!is_solvable(g))
 	{
-		write(1, "Error: Map cannot be solved\n", 29);
+		write(2, "Error: Map cannot be solved\n", 29);
 		exit_game(g);
 	}
 }
 
 void	parse_template(t_game *g, char *filepath)
 {
+	size_t	len;
+	char	*ext;
+
+	len = ft_strlen(filepath);
+	ext = &filepath[len - 4];
+	if (ft_strncmp(".ber", ext, 4))
+	{
+		write(1, "Error! map template must be a .ber file\n", 41);
+		exit_game(g);
+	}
 	g->map_h = count_lines(filepath);
 	if (g->map_h < 0)
 	{
-		write(1, "Error! loading map file\n", 24);
+		perror("Error (Open file)");
 		exit_game(g);
 	}
-	// TODO should we check for a max number of lines?
 	load_map(g, filepath);
 	g->map_w = ft_strlen(g->map[0]);
+	if (g->map_h > 15 || g->map_w > 28)
+	{
+		write(1, "Error! Map will not fit screen\n", 32);
+		exit_game(g);
+	}
 	validate_map(g);
 }

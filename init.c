@@ -6,49 +6,30 @@
 /*   By: mpedraza <mpedraza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 19:43:13 by mpedraza          #+#    #+#             */
-/*   Updated: 2026/01/21 18:27:10 by mpedraza         ###   ########.fr       */
+/*   Updated: 2026/01/22 16:08:50 by mpedraza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-
-void	init_tile(t_game *g, char tile, int x, int y)
+static void	init_objects(t_game *g)
 {
-	if (tile == '1')
-		mlx_put_image_to_window(g->mlx, g->win, g->tx.w, x * TILE, y * TILE);
-	else
-		mlx_put_image_to_window(g->mlx, g->win, g->tx.f, x * TILE, y * TILE);
-	if (tile == 'P')
-	{
-		mlx_put_image_to_window(g->mlx, g->win, g->tx.p, x * TILE, y * TILE);
-	}
-	if (tile == 'C')
-	{
-		mlx_put_image_to_window(g->mlx, g->win, g->tx.c, x * TILE, y * TILE);
-	}
-	if (tile == 'A')
-	{
-		mlx_put_image_to_window(g->mlx, g->win, g->tx.a, x * TILE, y * TILE);
-	}
-	if (tile == 'E')
-		mlx_put_image_to_window(g->mlx, g->win, g->tx.e, x * TILE, y * TILE);
+	g->p.total = 0;
+	g->p.x = 0;
+	g->p.y = 0;
+	g->p.items = 0;
+	g->p.a = 0;
+	g->p.c = 0;
+	g->p.moves = 0;
+	g->i.total = 0;
+	g->i.a = 0;
+	g->i.c = 0;
+	g->e.total = 0;
+	g->e.x = 0;
+	g->e.y = 0;
+	g->e.status = CLOSED;
 }
-
-void	init_map(t_game *g)
+void	init_game_state(t_game *g)
 {
-	int y;
-	int x;
-
-	y = 0;
-	while (g->map[y])
-	{
-		x = 0;
-		while (g->map[y][x])
-		{
-			init_tile(g, g->map[y][x], x, y);
-			x++;
-		}
-		y++;
-	}
+	init_objects(g);
 }

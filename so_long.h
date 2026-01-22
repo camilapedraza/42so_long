@@ -6,7 +6,7 @@
 /*   By: mpedraza <mpedraza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 16:01:43 by mpedraza          #+#    #+#             */
-/*   Updated: 2026/01/21 18:54:49 by mpedraza         ###   ########.fr       */
+/*   Updated: 2026/01/22 16:09:31 by mpedraza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <unistd.h>
 # include <stdint.h>
 # include <fcntl.h>
+# include <stdio.h> // TODO: REMOVE
 
 # define TILE 64
 # define BUFFER_SIZE 100
@@ -37,15 +38,9 @@ enum	e_exit
 	REACHED
 };
 
-typedef struct s_obj_count
-{
-	int	p;
-	int	c;
-	int	e;
-}	t_objs;
-
 typedef struct s_player
 {
+	int	total;
 	int	x;
 	int	y;
 	int	items;
@@ -63,6 +58,7 @@ typedef struct s_items
 
 typedef struct s_exit
 {
+	int			total;
 	int			x;
 	int			y;
 	enum e_exit status;
@@ -73,7 +69,12 @@ typedef struct s_textures
 	void *w;
 	void *f;
 	void *p;
+	void *pa;
+	void *pc;
+	void *pca;
+	void *pcab;
 	void *e;
+	void *eo;
 	void *c;
 	void *a;
 	int t_h;
@@ -91,7 +92,6 @@ typedef struct s_game
 	
 	char	**test_map;
 	
-	t_objs	o;
 	t_plyr	p;
 	t_itms	i;
 	t_exit	e;
@@ -112,10 +112,8 @@ int		has_valid_objects(t_game *g);
 int		has_valid_border(t_game *g);
 int		is_solvable(t_game *g);
 
-	/*  INITIALIZING GRAPHICS AND OBJECTS */
-void	init_player(t_game *g, int x, int y);
-void	init_tile(t_game *g, char tile, int x, int y);
-void	init_map(t_game *g);
+/*  INITIALIZING GRAPHICS AND OBJECTS */
+void	init_game_state(t_game *g);
 
 /*  RENDERING GRAPHICS  */
 void	render_tile(t_game *g, char tile, int x, int y);
@@ -129,6 +127,7 @@ int		handle_keypress(int keycode, t_game *g);
 char	*get_next_line(int fd);
 
 /*  UTILITIES: STRINGS  */
+int		ft_strncmp(const char *s1, const char *s2, size_t n);
 size_t	ft_strlen(const char *s);
 char	*ft_strchr(const char *s, int c);
 char	*ft_strdup(const char *s);

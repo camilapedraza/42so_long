@@ -6,7 +6,7 @@
 /*   By: mpedraza <mpedraza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 16:51:00 by mpedraza          #+#    #+#             */
-/*   Updated: 2026/01/22 16:15:43 by mpedraza         ###   ########.fr       */
+/*   Updated: 2026/01/22 18:33:34 by mpedraza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ void	validate_map(t_game *g)
 	}
 	if (!has_valid_objects(g))
 	{
+		write(2, "Error: Invalid characters or object counts\n", 31);
 		exit_game(g);
 	}
 	if (!has_valid_border(g))

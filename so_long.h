@@ -6,7 +6,7 @@
 /*   By: mpedraza <mpedraza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 16:01:43 by mpedraza          #+#    #+#             */
-/*   Updated: 2026/01/22 16:09:31 by mpedraza         ###   ########.fr       */
+/*   Updated: 2026/01/22 18:48:09 by mpedraza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,15 +38,25 @@ enum	e_exit
 	REACHED
 };
 
+enum e_plyr
+{
+	BASE,
+	NORI,
+	SAKE,
+	READY,
+	BENTO
+};
+
 typedef struct s_player
 {
-	int	total;
-	int	x;
-	int	y;
-	int	items;
-	int	a;
-	int	c;
-	int	moves;
+	int			total;
+	int			x;
+	int			y;
+	int			items;
+	int			a;
+	int			c;
+	int			moves;
+	enum e_plyr status;
 }	t_plyr;
 
 typedef struct s_items
@@ -101,6 +111,7 @@ typedef struct s_game
 /*  LOADING LIBS AND ASSETS  */
 void	load_mlx_window(t_game *g);
 void	load_assets(t_game *g);
+void	load_player_state(t_game *g);
 void	exit_game(t_game *g);
 
 /*  PARSING & VALIDATING MAP  */
@@ -120,7 +131,6 @@ void	render_tile(t_game *g, char tile, int x, int y);
 void	render_map(t_game *g);
 
 /*  HANDLING INPUT  */
-void	move(t_game *g, int move_x, int move_y);
 int		handle_keypress(int keycode, t_game *g);
 
 /* 	HELPERS  */
@@ -134,7 +144,9 @@ char	*ft_strdup(const char *s);
 char	*ft_strjoin(char const *s1, char const *s2);
 
 /*  UTILITIES: FLOOD FILL  */
-int		has_valid_path(char **map);
-void	flood_fill(char **test_map, int x, int y);
+int		has_valid_item_path(char **map);
+int 	has_valid_exit_path(char **map);
+void 	flood_fill_items(char **test_map, int x, int y);
+void	flood_fill_exit(char **test_map, int x, int y);
 
 #endif

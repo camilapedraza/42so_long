@@ -6,7 +6,7 @@
 /*   By: mpedraza <mpedraza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 14:21:49 by mpedraza          #+#    #+#             */
-/*   Updated: 2026/01/22 16:12:05 by mpedraza         ###   ########.fr       */
+/*   Updated: 2026/01/22 18:46:30 by mpedraza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	init_game(t_game *g)
 {	
 	load_mlx_window(g);
 	load_assets(g);
+	load_player_state(g);
 	render_map(g);
 	mlx_key_hook(g->win, handle_keypress, g);
 }

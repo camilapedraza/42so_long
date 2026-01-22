@@ -6,11 +6,19 @@
 /*   By: mpedraza <mpedraza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 18:49:05 by mpedraza          #+#    #+#             */
-/*   Updated: 2026/01/22 15:49:08 by mpedraza         ###   ########.fr       */
+/*   Updated: 2026/01/22 18:46:21 by mpedraza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+void	load_player_state(t_game *g)
+{
+	if (g->i.a == 0)
+		g->p.status = NORI;
+	else
+		g->p.status = BASE;
+}
 
 void	load_mlx_window(t_game *g)
 {

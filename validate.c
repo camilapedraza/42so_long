@@ -6,7 +6,7 @@
 /*   By: mpedraza <mpedraza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 16:55:23 by mpedraza          #+#    #+#             */
-/*   Updated: 2026/01/22 16:15:11 by mpedraza         ###   ########.fr       */
+/*   Updated: 2026/01/22 18:27:38 by mpedraza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,8 +124,11 @@ int	is_solvable(t_game *g)
 		y++;
 	}
 	g->test_map[y] = NULL;
-	flood_fill(g->test_map, g->p.x, g->p.y);
-	if (!has_valid_path(g->test_map))
+	flood_fill_items(g->test_map, g->p.x, g->p.y);
+	if (!has_valid_item_path(g->test_map))
+		return (0);
+	flood_fill_exit(g->test_map, g->p.x, g->p.y);
+	if (!has_valid_exit_path(g->test_map))
 		return (0);
 	return (1);
 }

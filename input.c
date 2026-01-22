@@ -6,7 +6,7 @@
 /*   By: mpedraza <mpedraza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 17:32:17 by mpedraza          #+#    #+#             */
-/*   Updated: 2026/01/22 19:37:55 by mpedraza         ###   ########.fr       */
+/*   Updated: 2026/01/22 21:33:13 by mpedraza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,20 +38,19 @@ static void	execute_move(t_game *g, int d_x, int d_y)
 	print_status(g);
 }
 
-static void parse_move(t_game *g, int move_x, int move_y)
+static void	parse_move(t_game *g, int move_x, int move_y)
 {
-	int d_x;
-	int d_y;
+	int	d_x;
+	int	d_y;
 
 	d_x = g->p.x + move_x;
 	d_y = g->p.y + move_y;
-
 	if (g->map[d_y][d_x] == '1' || g->p.status == BENTO)
-		return;
+		return ;
 	if (g->map[d_y][d_x] == 'E')
 	{
 		if (g->e.status == CLOSED)
-			return;
+			return ;
 		if (g->e.status == OPEN)
 			g->p.status = BENTO;
 	}
@@ -67,7 +66,7 @@ static void parse_move(t_game *g, int move_x, int move_y)
 	render_map(g);
 }
 
-int handle_keypress(int keycode, t_game *g)
+int	handle_keypress(int keycode, t_game *g)
 {
 	if (keycode == KEY_ESC)
 		exit_game(g);

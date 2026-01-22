@@ -6,7 +6,7 @@
 /*   By: mpedraza <mpedraza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 16:51:00 by mpedraza          #+#    #+#             */
-/*   Updated: 2026/01/22 19:12:57 by mpedraza         ###   ########.fr       */
+/*   Updated: 2026/01/22 21:43:52 by mpedraza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int	count_lines(char *filepath)
 	{
 		line = get_next_line(fd);
 		if (!line)
-			break;
+			break ;
 		count++;
 		free(line);
 	}
@@ -40,7 +40,7 @@ void	load_map(t_game *g, char *filepath)
 	int		y;
 	char	*line;
 	int		len;
-	
+
 	fd = open(filepath, O_RDONLY);
 	if (fd > 0)
 		g->map = malloc(sizeof(char *) * (g->map_h + 1));
@@ -62,6 +62,7 @@ void	load_map(t_game *g, char *filepath)
 	g->map[y] = NULL;
 	close(fd);
 }
+
 void	validate_map(t_game *g)
 {
 	if (g->map_h < 3)

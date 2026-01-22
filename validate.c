@@ -6,15 +6,16 @@
 /*   By: mpedraza <mpedraza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 16:55:23 by mpedraza          #+#    #+#             */
-/*   Updated: 2026/01/22 18:27:38 by mpedraza         ###   ########.fr       */
+/*   Updated: 2026/01/22 21:48:36 by mpedraza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int is_rectangle(t_game *g)
+int	is_rectangle(t_game *g)
 {
-	int y;
+	int	y;
+
 	if (!g->map)
 		return (0);
 	y = 0;
@@ -27,7 +28,7 @@ int is_rectangle(t_game *g)
 	return (1);
 }
 
-static void set_objets(char obj, t_game *g, int x, int y)
+static void	set_objets(char obj, t_game *g, int x, int y)
 {
 	if (obj == 'C' || obj == 'A')
 	{
@@ -51,10 +52,10 @@ static void set_objets(char obj, t_game *g, int x, int y)
 	}
 }
 
-int has_valid_objects(t_game *g)
+int	has_valid_objects(t_game *g)
 {
-	int y;
-	int x;
+	int	y;
+	int	x;
 
 	y = 0;
 	while (g->map[y])
@@ -80,10 +81,10 @@ int has_valid_objects(t_game *g)
 	return (1);
 }
 
-int has_valid_border(t_game *g)
+int	has_valid_border(t_game *g)
 {
-	int y;
-	int x;
+	int	y;
+	int	x;
 
 	y = 0;
 	while (g->map[y])

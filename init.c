@@ -6,7 +6,7 @@
 /*   By: mpedraza <mpedraza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 19:43:13 by mpedraza          #+#    #+#             */
-/*   Updated: 2026/01/22 18:44:21 by mpedraza         ###   ########.fr       */
+/*   Updated: 2026/01/22 21:31:49 by mpedraza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,14 @@ static void	init_game_objects(t_game *g)
 	g->e.y = 0;
 	g->e.status = CLOSED;
 }
-static void init_mlx_objects(t_game *g)
+
+static void	init_mlx_objects(t_game *g)
 {
 	g->mlx = NULL;
 	g->win = NULL;
 }
 
-static void init_map_objects(t_game *g)
+static void	init_map_objects(t_game *g)
 {
 	g->map = NULL;
 	g->map_w = 0;

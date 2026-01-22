@@ -6,7 +6,7 @@
 /*   By: mpedraza <mpedraza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 19:33:50 by mpedraza          #+#    #+#             */
-/*   Updated: 2026/01/22 20:03:26 by mpedraza         ###   ########.fr       */
+/*   Updated: 2026/01/22 21:45:11 by mpedraza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ void	ft_putchar_fd(char c, int fd)
 	write(fd, &c, 1);
 }
 
-static void ft_putnbr_fd(int n, int fd)
+static void	ft_putnbr_fd(int n, int fd)
 {
-	long nb;
+	long	nb;
 
 	nb = (long)n;
 	if (nb < 0)
@@ -35,10 +35,11 @@ static void ft_putnbr_fd(int n, int fd)
 	if (nb < 10)
 		ft_putchar_fd((nb + 48), fd);
 }
+
 void	print_instructions(void)
 {
 	write(1, "Prepare the onigiri!\n", 21);
-	write(1, "- Pick up all the ingredients\n", 31);    
+	write(1, "- Pick up all the ingredients\n", 31);
 	write(1, "- When ready, put it in the bento box!\n", 40);
 	write(1, "--------------------------------------\n\n", 41);
 }

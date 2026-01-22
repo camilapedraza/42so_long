@@ -6,25 +6,24 @@
 /*   By: mpedraza <mpedraza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 14:21:49 by mpedraza          #+#    #+#             */
-/*   Updated: 2026/01/22 19:57:41 by mpedraza         ###   ########.fr       */
+/*   Updated: 2026/01/22 21:46:13 by mpedraza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-#include <stdio.h>
 
+// TODO fix handoff with exit_game
+// TODO understand how it can return 0 if exit game exits before that
 int	close_game(t_game *g)
 {
-	// TODO fix handoff with exit_game
-	// TODO understand how it can return 0 if exit game exits before that
 	exit_game(g);
 	return (0);
 }
 
+// TODO CLEAN UP MLX stuff
+// TODO IMPLEMENT ERROR CODES?
 void	exit_game(t_game *g)
 {
-	// TODO CLEAN UP MLX stuff
-	// TODO IMPLEMENT ERROR CODES?
 	(void)g;
 	exit(0);
 }
@@ -42,7 +41,7 @@ void	init_game(t_game *g)
 
 int	main(int ac, char **av)
 {
-	t_game g;
+	t_game	g;
 
 	if (ac != 2)
 	{

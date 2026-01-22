@@ -6,7 +6,7 @@
 /*   By: mpedraza <mpedraza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 16:01:43 by mpedraza          #+#    #+#             */
-/*   Updated: 2026/01/22 19:58:33 by mpedraza         ###   ########.fr       */
+/*   Updated: 2026/01/22 21:51:04 by mpedraza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <unistd.h>
 # include <stdint.h>
 # include <fcntl.h>
-# include <stdio.h> // TODO: REMOVE
+# include <stdio.h>
 
 # define TILE 64
 # define BUFFER_SIZE 100
@@ -55,40 +55,40 @@ typedef struct s_player
 	int			a;
 	int			c;
 	int			moves;
-	enum e_plyr status;
+	enum e_plyr	status;
 }	t_plyr;
 
 typedef struct s_items
 {
-	int total;
-	int c;
-	int a;
-} t_itms;
+	int	total;
+	int	c;
+	int	a;
+}	t_itms;
 
 typedef struct s_exit
 {
 	int			total;
 	int			x;
 	int			y;
-	enum e_exit status;
-} t_exit;
+	enum e_exit	status;
+}	t_exit;
 
 typedef struct s_textures
 {
-	void *w;
-	void *f;
-	void *p;
-	void *pa;
-	void *pc;
-	void *pca;
-	void *pcab;
-	void *e;
-	void *eo;
-	void *c;
-	void *a;
-	int t_h;
-	int t_w;
-} t_txtr;
+	void	*w;
+	void	*f;
+	void	*p;
+	void	*pa;
+	void	*pc;
+	void	*pca;
+	void	*pcab;
+	void	*e;
+	void	*eo;
+	void	*c;
+	void	*a;
+	int		t_h;
+	int		t_w;
+}	t_txtr;
 
 typedef struct s_game
 {
@@ -98,9 +98,9 @@ typedef struct s_game
 	char	**map;
 	int		map_w;
 	int		map_h;
-	
+
 	char	**test_map;
-	
+
 	t_plyr	p;
 	t_itms	i;
 	t_exit	e;
@@ -148,8 +148,8 @@ char	*ft_strjoin(char const *s1, char const *s2);
 
 /*  UTILITIES: FLOOD FILL  */
 int		has_valid_item_path(char **map);
-int 	has_valid_exit_path(char **map);
-void 	flood_fill_items(char **test_map, int x, int y);
+int		has_valid_exit_path(char **map);
+void	flood_fill_items(char **test_map, int x, int y);
 void	flood_fill_exit(char **test_map, int x, int y);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: mpedraza <mpedraza@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/07 14:16:38 by mpedraza          #+#    #+#              #
-#    Updated: 2026/01/23 16:41:32 by mpedraza         ###   ########.fr        #
+#    Updated: 2026/01/23 18:51:37 by mpedraza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ CC			=	cc
 CFLAGS		= 	-Wall -Wextra -Werror
 
 HEADER		=	so_long.h
-FILES		=	so_long init parse validate load render input print \
+FILES		=	so_long init parse validate load render input print exit \
 				helper_gnl \
 				utils_flood utils_string
 SRCS		=	${FILES:%=%.c}
@@ -37,7 +37,7 @@ ASSETS		= 	${IMAGES:%=img/%.xpm}
 all: ${NAME}
 
 ${NAME}: ${OBJS} ${ASSETS} 
-	${CC} ${OBJS} -g -Lmlx -lmlx -Imlx -lXext -lX11 -lm -lz -o $(NAME)
+	${CC} ${OBJS} -Lmlx -lmlx -Imlx -lXext -lX11 -lm -lz -o $(NAME)
 
 clean:
 	${RM} ${OBJS}

@@ -6,7 +6,7 @@
 /*   By: mpedraza <mpedraza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 18:49:05 by mpedraza          #+#    #+#             */
-/*   Updated: 2026/01/23 16:45:42 by mpedraza         ###   ########.fr       */
+/*   Updated: 2026/01/23 18:50:15 by mpedraza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,13 @@ void	load_mlx_window(t_game *g)
 	if (!g->mlx)
 	{
 		write(2, "Error: Failed to init MLX\n", 27);
-		exit_game(g);
+		exit_game(g, 1);
 	}
 	g->win = mlx_new_window(g->mlx, 64 * g->map_w, 64 * g->map_h, "So Long");
 	if (!g->win)
 	{
 		write(2, "Error: Failed to create MLX window\n", 36);
-		exit_game(g);
+		exit_game(g, 1);
 	}
 }
 
@@ -60,6 +60,6 @@ void	load_assets(t_game *g)
 		|| !g->tx.a)
 	{
 		write(2, "Error! Failed to load XPM files\n", 33);
-		exit_game(g);
+		exit_game(g, 1);
 	}
 }

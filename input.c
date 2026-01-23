@@ -6,7 +6,7 @@
 /*   By: mpedraza <mpedraza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 17:32:17 by mpedraza          #+#    #+#             */
-/*   Updated: 2026/01/23 17:12:32 by mpedraza         ###   ########.fr       */
+/*   Updated: 2026/01/23 18:50:14 by mpedraza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ static void	parse_move(t_game *g, int move_x, int move_y)
 int	handle_keypress(int keycode, t_game *g)
 {
 	if (keycode == KEY_ESC)
-		exit_game(g);
+		exit_game(g, 0);
 	else if (keycode == KEY_UP || keycode == KEY_W)
 		parse_move(g, 0, -1);
 	else if (keycode == KEY_DOWN || keycode == KEY_S)

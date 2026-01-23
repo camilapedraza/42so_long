@@ -6,7 +6,7 @@
 /*   By: mpedraza <mpedraza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 16:01:43 by mpedraza          #+#    #+#             */
-/*   Updated: 2026/01/23 17:10:58 by mpedraza         ###   ########.fr       */
+/*   Updated: 2026/01/23 18:50:37 by mpedraza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,6 @@ typedef struct s_game
 void	load_mlx_window(t_game *g);
 void	load_assets(t_game *g);
 void	load_player_state(t_game *g);
-void	exit_game(t_game *g);
 
 /*  PARSING & VALIDATING MAP  */
 void	load_map(t_game *g, char *filepath);
@@ -139,6 +138,9 @@ void	print_status(t_game *g);
 
 /*  HANDLING INPUT  */
 int		handle_keypress(int keycode, t_game *g);
+
+/*	FREE, CLOSE, EXIT  */
+int		exit_game(t_game *g, int error);
 
 /* 	HELPERS  */
 char	*get_next_line(int fd);

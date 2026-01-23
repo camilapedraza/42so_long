@@ -6,7 +6,7 @@
 /*   By: mpedraza <mpedraza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 16:55:23 by mpedraza          #+#    #+#             */
-/*   Updated: 2026/01/22 23:09:06 by mpedraza         ###   ########.fr       */
+/*   Updated: 2026/01/23 15:25:28 by mpedraza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,4 +131,5 @@ int	is_solvable(t_game *g)
 	if (!has_valid_exit_path(g->test_map))
 		return (0);
 	return (1);
+	// TODO - should I free the test map in here?
 }

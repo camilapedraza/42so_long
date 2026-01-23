@@ -6,7 +6,7 @@
 /*   By: mpedraza <mpedraza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 16:51:00 by mpedraza          #+#    #+#             */
-/*   Updated: 2026/01/22 23:09:06 by mpedraza         ###   ########.fr       */
+/*   Updated: 2026/01/23 16:00:56 by mpedraza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,32 +34,44 @@ static int	count_lines(char *filepath)
 	return (count);
 }
 
+void	build_rows(t_game *g, int fd)
+{
+	int		i;
+	char	*line;
+	int		len;
+
+	i = 0;
+	while (1)
+	{
+		line = get_next_line(fd);
+		if (!line)
+			break;
+		len = ft_strlen(line);
+		if (len > 0 && line[len - 1] == '\n')
+			line[len - 1] = '\0';
+		g->map[i++] = line;
+	}
+	if (i != g->map_h)
+	{
+		write(2, "Error: could not build map from .ber file\n", 43);
+		exit_game(g);
+	}
+	g->map[i] = NULL;
+}
+
 void	load_map(t_game *g, char *filepath)
 {
 	int		fd;
-	int		y;
-	char	*line;
-	int		len;
 
 	fd = open(filepath, O_RDONLY);
 	if (fd > 0)
 		g->map = malloc(sizeof(char *) * (g->map_h + 1));
 	if (!g->map)
-		exit_game(g);
-	y = 0;
-	while (1)
 	{
-		line = get_next_line(fd);
-		if (!line)
-			break ;
-		len = ft_strlen(line);
-		if (len > 0 && line[len - 1] == '\n')
-			line[len - 1] = '\0';
-		g->map[y++] = line;
-	}
-	if (y != g->map_h)
+		write(2, "Error: memory allocation failed\n", 33);
 		exit_game(g);
-	g->map[y] = NULL;
+	}
+	build_rows(g, fd);
 	close(fd);
 }
 
@@ -98,7 +110,7 @@ void	parse_template(t_game *g, char *filepath)
 	ext = &filepath[len - 4];
 	if (ft_strncmp(".ber", ext, 4))
 	{
-		write(2, "Error! map template must be a .ber file\n", 41);
+		write(2, "Error! map template must have a .ber extension\n", 48);
 		exit_game(g);
 	}
 	g->map_h = count_lines(filepath);

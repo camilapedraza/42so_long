@@ -6,7 +6,7 @@
 /*   By: mpedraza <mpedraza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 18:49:05 by mpedraza          #+#    #+#             */
-/*   Updated: 2026/01/22 23:10:29 by mpedraza         ###   ########.fr       */
+/*   Updated: 2026/01/23 16:45:42 by mpedraza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,9 @@ void	load_assets(t_game *g)
 	g->tx.eo = xpm_to_img(g->mlx, "img/eo.xpm", &g->tx.t_w, &g->tx.t_h);
 	g->tx.c = xpm_to_img(g->mlx, "img/c.xpm", &g->tx.t_w, &g->tx.t_h);
 	g->tx.a = xpm_to_img(g->mlx, "img/a.xpm", &g->tx.t_w, &g->tx.t_h);
-	if (!g->tx.w || !g->tx.f || !g->tx.p || !g->tx.pa || !g->tx.pca
-		|| !g->tx.pcab || !g->tx.e || !g->tx.eo || !g->tx.c || !g->tx.a)
+	if (!g->tx.w || !g->tx.f || !g->tx.p || !g->tx.pa || !g->tx.pc
+		|| !g->tx.pca || !g->tx.pcab || !g->tx.e || !g->tx.eo || !g->tx.c
+		|| !g->tx.a)
 	{
 		write(2, "Error! Failed to load XPM files\n", 33);
 		exit_game(g);

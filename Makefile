@@ -6,7 +6,7 @@
 #    By: mpedraza <mpedraza@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/07 14:16:38 by mpedraza          #+#    #+#              #
-#    Updated: 2026/01/22 21:49:16 by mpedraza         ###   ########.fr        #
+#    Updated: 2026/01/23 16:41:32 by mpedraza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,7 @@ ASSETS		= 	${IMAGES:%=img/%.xpm}
 all: ${NAME}
 
 ${NAME}: ${OBJS} ${ASSETS} 
-	${CC} ${OBJS} -Lmlx -lmlx -Imlx -lXext -lX11 -lm -lz -o $(NAME)
+	${CC} ${OBJS} -g -Lmlx -lmlx -Imlx -lXext -lX11 -lm -lz -o $(NAME)
 
 clean:
 	${RM} ${OBJS}

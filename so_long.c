@@ -6,7 +6,7 @@
 /*   By: mpedraza <mpedraza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 14:21:49 by mpedraza          #+#    #+#             */
-/*   Updated: 2026/01/22 23:13:13 by mpedraza         ###   ########.fr       */
+/*   Updated: 2026/01/23 16:48:47 by mpedraza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,66 @@ int	close_game(t_game *g)
 
 // TODO CLEAN UP MLX stuff
 // TODO IMPLEMENT ERROR CODES?
+
+void	free_map(char **map)
+{
+	int	i;
+
+	i = 0;
+	while (map[i])
+		free(map[i++]);
+	free(map);
+}
+
+void	free_textures(t_game *g)
+{
+	if (g->tx.w)
+		mlx_destroy_image(g->mlx, g->tx.w);
+	if (g->tx.f)
+		mlx_destroy_image(g->mlx, g->tx.f);
+	if (g->tx.p)
+		mlx_destroy_image(g->mlx, g->tx.p);
+	if (g->tx.pa)
+		mlx_destroy_image(g->mlx, g->tx.pa);
+	if (g->tx.pc)
+		mlx_destroy_image(g->mlx, g->tx.pc);
+	if (g->tx.pca)
+		mlx_destroy_image(g->mlx, g->tx.pca);
+	if (g->tx.pcab)
+		mlx_destroy_image(g->mlx, g->tx.pcab);
+	if (g->tx.e)
+		mlx_destroy_image(g->mlx, g->tx.e);
+	if (g->tx.eo)
+		mlx_destroy_image(g->mlx, g->tx.eo);
+	if (g->tx.c)
+		mlx_destroy_image(g->mlx, g->tx.c);
+	if (g->tx.a)
+		mlx_destroy_image(g->mlx, g->tx.a);
+}
 void	exit_game(t_game *g)
 {
-	(void)g;
+	int	i;
+	
+	i = 0;
+	if (g->map)
+	{
+		free_map(g->map);
+		g->map = NULL;
+	}
+	if (g->test_map)
+	{
+		free_map(g->test_map);
+		g->test_map = NULL;
+	}
+	free_textures(g);
+	if (g->win)
+		mlx_destroy_window(g->mlx, g->win);
+	if (g->win)
+		mlx_destroy_display(g->mlx);
+	if (g->mlx)
+		free(g->mlx);
+	g->mlx = NULL;
+	g->win = NULL;
 	exit(0);
 }
 

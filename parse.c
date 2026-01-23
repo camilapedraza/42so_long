@@ -6,7 +6,7 @@
 /*   By: mpedraza <mpedraza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 16:51:00 by mpedraza          #+#    #+#             */
-/*   Updated: 2026/01/23 16:00:56 by mpedraza         ###   ########.fr       */
+/*   Updated: 2026/01/23 17:18:56 by mpedraza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,7 @@ void	parse_template(t_game *g, char *filepath)
 	g->map_w = ft_strlen(g->map[0]);
 	if (g->map_h > 15 || g->map_w > 28)
 	{
-		write(2, "Error! Map will not fit screen\n", 32);
+		write(2, "Error! Map will not fit screen. Max is 28 x 15.\n", 49);
 		exit_game(g);
 	}
 	validate_map(g);

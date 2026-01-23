@@ -6,7 +6,7 @@
 /*   By: mpedraza <mpedraza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 17:32:17 by mpedraza          #+#    #+#             */
-/*   Updated: 2026/01/22 21:33:13 by mpedraza         ###   ########.fr       */
+/*   Updated: 2026/01/23 17:12:32 by mpedraza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,13 +70,13 @@ int	handle_keypress(int keycode, t_game *g)
 {
 	if (keycode == KEY_ESC)
 		exit_game(g);
-	else if (keycode == KEY_UP)
+	else if (keycode == KEY_UP || keycode == KEY_W)
 		parse_move(g, 0, -1);
-	else if (keycode == KEY_DOWN)
+	else if (keycode == KEY_DOWN || keycode == KEY_S)
 		parse_move(g, 0, 1);
-	else if (keycode == KEY_LEFT)
+	else if (keycode == KEY_LEFT || keycode == KEY_A)
 		parse_move(g, -1, 0);
-	else if (keycode == KEY_RIGHT)
+	else if (keycode == KEY_RIGHT || keycode == KEY_D)
 		parse_move(g, 1, 0);
 	return (0);
 }

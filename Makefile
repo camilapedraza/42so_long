@@ -6,7 +6,7 @@
 #    By: mpedraza <mpedraza@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/07 14:16:38 by mpedraza          #+#    #+#              #
-#    Updated: 2026/01/23 18:51:37 by mpedraza         ###   ########.fr        #
+#    Updated: 2026/01/24 16:44:07 by mpedraza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,26 +24,38 @@ OBJS		=	${SRCS:%.c=%.o}
 IMAGES		=	a c e f p pa pc pca pcab w
 ASSETS		= 	${IMAGES:%=img/%.xpm}
 
-# TODO NEED TO INCLUDE RULE TO CLONE MLX PROJECT, CONFIGURE BEFORE ANYTHING ELSE!
+MLX_DIR		=	mlx
+MLX_REPO	=	https://github.com/42Paris/minilibx-linux.git
+MLX_LIB     = 	${MLX_DIR}/libmlx.a
 
-# FOR AGRESSIVE OPTIMIZATION WHEN DONE DEBUGGING
-#%.o: %.c
-#	$(CC) ${CFLAGS} -Imlx -O3 -c $< -o $@
+
+# FOR AGRESSIVE OPTIMIZATION
+%.o: %.c ${HEADER} | $(MLX_LIB)
+	$(CC) ${CFLAGS} -I${MLX_DIR} -O3 -c $< -o $@
 
 # FOR DEBUGGING
-%.o: %.c ${HEADER}
-	${CC} ${CFLAGS} -Imlx -g -O0 -c $< -o $@
+#%.o: %.c ${HEADER} | $(MLX_LIB)
+#	${CC} ${CFLAGS} -I${MLX_DIR} -O0 -c $< -o $@
 
 all: ${NAME}
 
-${NAME}: ${OBJS} ${ASSETS} 
-	${CC} ${OBJS} -Lmlx -lmlx -Imlx -lXext -lX11 -lm -lz -o $(NAME)
+${NAME}: ${OBJS} $(MLX_LIB) ${ASSETS}
+	${CC} ${OBJS} -L${MLX_DIR} -lmlx -Imlx -lXext -lX11 -lm -lz -o ${NAME}
+
+$(MLX_LIB):
+	@if [ ! -d "$(MLX_DIR)" ]; then \
+		echo "Cloning MiniLibX..."; \
+		git clone $(MLX_REPO) $(MLX_DIR); \
+	fi
+	@echo "Building MiniLibX..."
+	@cd $(MLX_DIR) && ./configure
 
 clean:
 	${RM} ${OBJS}
 
 fclean: clean
 	${RM} ${NAME}
+	${RM} -rf ${MLX_DIR}
 
 re: fclean all
 

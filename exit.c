@@ -6,7 +6,7 @@
 /*   By: mpedraza <mpedraza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 18:38:02 by mpedraza          #+#    #+#             */
-/*   Updated: 2026/01/23 18:49:50 by mpedraza         ###   ########.fr       */
+/*   Updated: 2026/01/24 16:32:51 by mpedraza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,15 +51,11 @@ static void	free_textures(t_game *g)
 int	exit_game(t_game *g, int error)
 {
 	if (g->map)
-	{
 		free_map(g->map);
-		g->map = NULL;
-	}
 	if (g->test_map)
-	{
 		free_map(g->test_map);
-		g->test_map = NULL;
-	}
+	g->map = NULL;
+	g->test_map = NULL;
 	free_textures(g);
 	if (g->win)
 		mlx_destroy_window(g->mlx, g->win);
@@ -71,6 +67,7 @@ int	exit_game(t_game *g, int error)
 	g->win = NULL;
 	if (error)
 		exit(EXIT_FAILURE);
+	write(2, "\nSo long, and thanks for all the fish! (｡･ω･)ﾉﾞ\n", 60);
 	exit(EXIT_SUCCESS);
 	return (0);
 }

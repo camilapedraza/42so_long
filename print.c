@@ -6,7 +6,7 @@
 /*   By: mpedraza <mpedraza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 19:33:50 by mpedraza          #+#    #+#             */
-/*   Updated: 2026/01/22 21:45:11 by mpedraza         ###   ########.fr       */
+/*   Updated: 2026/01/24 16:43:32 by mpedraza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ static void	ft_putnbr_fd(int n, int fd)
 
 void	print_instructions(void)
 {
-	write(1, "Prepare the onigiri!\n", 21);
+	write(1, "\n--------------------------------------\n", 41);
+	write(1, "Prepare the onigiri!\n", 22);
 	write(1, "- Pick up all the ingredients\n", 31);
 	write(1, "- When ready, put it in the bento box!\n", 40);
 	write(1, "--------------------------------------\n\n", 41);
@@ -49,8 +50,5 @@ void	print_status(t_game *g)
 	write(1, "\r\033[KOnigiri Moves: ", 20);
 	ft_putnbr_fd(g->p.moves, 1);
 	if (g->p.status == BENTO)
-	{
-		write(1, "\nSUCCESS! YOUR ONIGIRI IS READY TO GO!", 39);
-		write(1, "\nSo long and thanks for all the fish!", 38);
-	}
+		write(1, "\n\n(•̀ᴗ•́ )و SUCCESS! YOUR ONIGIRI IS READY TO EAT!\n", 61);
 }

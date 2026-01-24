@@ -6,7 +6,7 @@
 /*   By: mpedraza <mpedraza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 16:01:43 by mpedraza          #+#    #+#             */
-/*   Updated: 2026/01/23 18:50:37 by mpedraza         ###   ########.fr       */
+/*   Updated: 2026/01/24 18:22:43 by mpedraza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@
 # define KEY_W		119
 # define KEY_D		100
 # define KEY_S		115
-
 
 # define MAP_MARKERS "01PCEA"
 

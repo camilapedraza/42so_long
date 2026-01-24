@@ -6,7 +6,7 @@
 /*   By: mpedraza <mpedraza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 16:51:00 by mpedraza          #+#    #+#             */
-/*   Updated: 2026/01/23 18:49:04 by mpedraza         ###   ########.fr       */
+/*   Updated: 2026/01/24 18:55:10 by mpedraza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,23 +45,23 @@ void	build_rows(t_game *g, int fd)
 	{
 		line = get_next_line(fd);
 		if (!line)
-			break;
+			break ;
 		len = ft_strlen(line);
 		if (len > 0 && line[len - 1] == '\n')
 			line[len - 1] = '\0';
 		g->map[i++] = line;
 	}
+	g->map[i] = NULL;
 	if (i != g->map_h)
 	{
 		write(2, "Error: could not build map from .ber file\n", 43);
 		exit_game(g, 1);
 	}
-	g->map[i] = NULL;
 }
 
 void	load_map(t_game *g, char *filepath)
 {
-	int		fd;
+	int	fd;
 
 	fd = open(filepath, O_RDONLY);
 	if (fd > 0)

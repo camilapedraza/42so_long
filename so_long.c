@@ -6,12 +6,11 @@
 /*   By: mpedraza <mpedraza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 14:21:49 by mpedraza          #+#    #+#             */
-/*   Updated: 2026/01/23 18:44:19 by mpedraza         ###   ########.fr       */
+/*   Updated: 2026/01/24 18:16:35 by mpedraza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
 
 void	init_game(t_game *g)
 {	

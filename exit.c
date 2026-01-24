@@ -6,21 +6,23 @@
 /*   By: mpedraza <mpedraza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 18:38:02 by mpedraza          #+#    #+#             */
-/*   Updated: 2026/01/24 16:32:51 by mpedraza         ###   ########.fr       */
+/*   Updated: 2026/01/24 18:44:08 by mpedraza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
 
 static void	free_map(char **map)
 {
 	int	i;
 
 	i = 0;
-	while (map[i])
-		free(map[i++]);
-	free(map);
+	if (map && *map)
+	{
+		while (map[i])
+			free(map[i++]);
+		free(map);
+	}
 }
 
 static void	free_textures(t_game *g)
@@ -48,6 +50,7 @@ static void	free_textures(t_game *g)
 	if (g->tx.a)
 		mlx_destroy_image(g->mlx, g->tx.a);
 }
+
 int	exit_game(t_game *g, int error)
 {
 	if (g->map)

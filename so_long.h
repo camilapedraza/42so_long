@@ -6,7 +6,7 @@
 /*   By: mpedraza <mpedraza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 16:01:43 by mpedraza          #+#    #+#             */
-/*   Updated: 2026/01/24 18:22:43 by mpedraza         ###   ########.fr       */
+/*   Updated: 2026/01/25 16:16:10 by mpedraza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,37 @@
 # define TILE 64
 # define BUFFER_SIZE 100
 
-# define KEY_ESC	65307
-# define KEY_LEFT	65361
-# define KEY_UP		65362
-# define KEY_RIGHT	65363
-# define KEY_DOWN	65364
-# define KEY_A		97
-# define KEY_W		119
-# define KEY_D		100
-# define KEY_S		115
+#ifdef LINUX
+
+# define KEY_ESC    65307
+
+# define KEY_LEFT   65361
+# define KEY_UP     65362
+# define KEY_RIGHT  65363
+# define KEY_DOWN   65364
+
+# define KEY_A      97
+# define KEY_W      119
+# define KEY_D      100
+# define KEY_S      115
+
+#endif
+
+#ifdef MACOS
+
+# define KEY_ESC    53
+
+# define KEY_LEFT   123
+# define KEY_UP     126
+# define KEY_RIGHT  124
+# define KEY_DOWN   125
+
+# define KEY_A      0
+# define KEY_W      13
+# define KEY_D      2
+# define KEY_S      1
+
+#endif
 
 # define MAP_MARKERS "01PCEA"
 

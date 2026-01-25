@@ -6,7 +6,7 @@
 #    By: mpedraza <mpedraza@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/07 14:16:38 by mpedraza          #+#    #+#              #
-#    Updated: 2026/01/24 16:44:07 by mpedraza         ###   ########.fr        #
+#    Updated: 2026/01/25 16:54:14 by mpedraza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,10 +24,29 @@ OBJS		=	${SRCS:%.c=%.o}
 IMAGES		=	a c e f p pa pc pca pcab w
 ASSETS		= 	${IMAGES:%=img/%.xpm}
 
-MLX_DIR		=	mlx
-MLX_REPO	=	https://github.com/42Paris/minilibx-linux.git
-MLX_LIB     = 	${MLX_DIR}/libmlx.a
+UNAME		:=	$(shell uname)
 
+MLX_DIR		=	mlx
+
+ifeq ($(UNAME), Linux)
+	MLX_REPO = https://github.com/42Paris/minilibx-linux.git
+	MLX_LIB  = $(MLX_DIR)/libmlx.a
+	MLX_FLAGS = -lmlx -Imlx -lXext -lX11 -lm -lz
+endif
+
+ifeq ($(UNAME), Darwin)
+	MLX_REPO = https://github.com/camilapedraza/42minilibx-macos.git
+	MLX_LIB  = $(MLX_DIR)/libmlx.a
+	MLX_FLAGS = -lmlx -Imlx -framework OpenGL -framework AppKit
+endif
+
+ifeq ($(UNAME), Linux)
+    CFLAGS += -DLINUX
+endif
+
+ifeq ($(UNAME), Darwin)
+    CFLAGS += -DMACOS
+endif
 
 # FOR AGRESSIVE OPTIMIZATION
 %.o: %.c ${HEADER} | $(MLX_LIB)
@@ -40,7 +59,7 @@ MLX_LIB     = 	${MLX_DIR}/libmlx.a
 all: ${NAME}
 
 ${NAME}: ${OBJS} $(MLX_LIB) ${ASSETS}
-	${CC} ${OBJS} -L${MLX_DIR} -lmlx -Imlx -lXext -lX11 -lm -lz -o ${NAME}
+	${CC} ${OBJS} -L${MLX_DIR} ${MLX_FLAGS} -o ${NAME}
 
 $(MLX_LIB):
 	@if [ ! -d "$(MLX_DIR)" ]; then \
@@ -48,7 +67,12 @@ $(MLX_LIB):
 		git clone $(MLX_REPO) $(MLX_DIR); \
 	fi
 	@echo "Building MiniLibX..."
+ifeq ($(UNAME), Linux)
 	@cd $(MLX_DIR) && ./configure
+endif
+ifeq ($(UNAME), Darwin)
+	@cd $(MLX_DIR) && make
+endif
 
 clean:
 	${RM} ${OBJS}

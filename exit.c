@@ -6,7 +6,7 @@
 /*   By: mpedraza <mpedraza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 18:38:02 by mpedraza          #+#    #+#             */
-/*   Updated: 2026/01/24 18:44:08 by mpedraza         ###   ########.fr       */
+/*   Updated: 2026/01/25 16:04:14 by mpedraza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,10 @@ int	exit_game(t_game *g, int error)
 	free_textures(g);
 	if (g->win)
 		mlx_destroy_window(g->mlx, g->win);
-	if (g->mlx)
-		mlx_destroy_display(g->mlx);
+	#ifdef LINUX
+		if (g->mlx)
+			mlx_destroy_display(g->mlx);
+	#endif
 	if (g->mlx)
 		free(g->mlx);
 	g->mlx = NULL;

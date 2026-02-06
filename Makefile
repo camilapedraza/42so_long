@@ -59,7 +59,7 @@ endif
 all: ${NAME}
 
 ${NAME}: ${OBJS} $(MLX_LIB) ${ASSETS}
-	${CC} ${OBJS} -L${MLX_DIR} ${MLX_FLAGS} -o ${NAME}
+	${CC} ${CFLAGS} ${OBJS} -L${MLX_DIR} ${MLX_FLAGS} -o ${NAME}
 
 $(MLX_LIB):
 	@if [ ! -d "$(MLX_DIR)" ]; then \
